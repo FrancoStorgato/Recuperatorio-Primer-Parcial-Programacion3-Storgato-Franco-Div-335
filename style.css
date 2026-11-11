@@ -1,0 +1,140 @@
+:root {
+  --color-primario: #B22222;
+  --gris-oscuro: #dddddd;
+  --gris-claro: #fbfbfb;
+  --color-secundario: #fbeaea;
+}
+
+*{
+box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0 20px;
+}
+
+header,
+footer {
+  text-align: center;
+}
+
+.contenedor {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.catalogo {
+  flex: 1;
+}
+
+.titulo-y-contador {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#titulo-burger {
+  cursor: pointer;
+}
+
+#contador-carrito {
+  color: var(--color-primario);
+  font-weight: bold;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--gris-oscuro);
+}
+
+.filtros {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+#buscador {
+  margin-left: auto;
+  padding: 6px;
+  border: 1px solid var(--gris-oscuro);
+}
+
+#products-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.tarjeta {
+  border: 1px solid var(--gris-oscuro);
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.tarjeta:hover {
+  background-color: var(--color-secundario);
+}
+
+.tarjeta img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.precio {
+  color: var(--color-primario);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.boton-agregar {
+  width: 100%;
+  background-color: var(--color-primario);
+  color: white;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+}
+
+.boton-agregar:disabled {
+  background-color: #cccccc;
+  color: #777777;
+  cursor: not-allowed;
+}
+
+.carrito {
+  width: 280px;
+  background-color: var(--gris-claro);
+  border: 1px solid var(--gris-oscuro);
+  padding: 15px;
+}
+
+#cart-list {
+  list-style: none;
+  padding: 0;
+}
+
+#cart-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.boton-quitar {
+  background: white;
+  color: var(--color-primario);
+  border: 1px solid var(--color-primario);
+  cursor: pointer;
+}
+ 
+.mensaje-vacio {
+  grid-column: 1 / -1;
+  text-align: center;
+}

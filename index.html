@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burger House</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Parcial 1 - División A</h1>
+  </header>
+
+  <main>
+    <div class="contenedor">
+
+      <section class="catalogo">
+
+        <div class="titulo-y-contador">
+          <h2 id="titulo-burger">Burger House</h2>
+          <p id="contador-carrito">Carrito (0)</p>
+        </div>
+
+        <hr>
+
+        <div class="filtros">
+          <label><input type="radio" name="categoria" value="todas" checked> Todas</label>
+          <label><input type="radio" name="categoria" value="clasicas"> Clásicas</label>
+          <label><input type="radio" name="categoria" value="especiales"> Especiales</label>
+          <label><input type="radio" name="categoria" value="combos"> Combos</label>
+
+          <input type="text" id="buscador" placeholder="Buscar productos">
+        </div>
+
+        <select id="orden">
+          <option value="">Ordenar por precio</option>
+          <option value="menor">Menor precio</option>
+          <option value="mayor">Mayor precio</option>
+        </select>
+
+        <section id="products-container"></section>
+
+      </section>
+
+      <aside class="carrito">
+        <h3>Mi carrito</h3>
+        <ul id="cart-list"></ul>
+        <p class="total">Total: <span id="cart-total">$ 0</span></p>
+        <button id="boton-vaciar">VACIAR CARRITO</button>
+      </aside>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>Franco Storgato</p>
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>
