@@ -13,19 +13,18 @@ const productosJSON = `[
 ]`;
 
  
-// ---------- PARTE 3 - JSON y localStorage ----------
- 
-// convierto el json a un array de objetos
+
+
 const productos = JSON.parse(productosJSON);
  
-// lo guardo en localStorage con la clave "productos"
+
 localStorage.setItem("productos", JSON.stringify(productos));
  
-// lo vuelvo a obtener directamente del localStorage y lo muestro en consola
+
 const productosGuardados = JSON.parse(localStorage.getItem("productos"));
 console.table(productosGuardados);
  
-// ---------- Elementos del DOM ----------
+/* Elementos del Dom */
  
 const titulo = document.getElementById("titulo-burger");
 const contadorCarrito = document.getElementById("contador-carrito");
@@ -37,19 +36,19 @@ const listaCarrito = document.getElementById("cart-list");
 const totalCarrito = document.getElementById("cart-total");
 const botonVaciar = document.getElementById("boton-vaciar");
  
-// si ya había un carrito guardado lo recupero, sino arranca vacío
+
 let carrito = JSON.parse(localStorage.getItem("carrito"));
 if (carrito === null) {
   carrito = [];
 }
  
-// ---------- Funciones auxiliares ----------
+/* Funciones auxiliares */
  
 function formatearPrecio(numero) {
   return "$ " + numero.toLocaleString("es-AR");
 }
  
-// saca las tildes y pasa a minúscula para poder comparar "clasicas" con "Clásicas"
+
 function limpiarTexto(texto) {
   return texto.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 }
@@ -64,7 +63,7 @@ function obtenerCategoriaSeleccionada() {
   return seleccionada;
 }
  
-// ---------- Mostrar productos ----------
+/* Mostrar los productos */
  
 function mostrarProductos(lista) {
   contenedorProductos.innerHTML = "";
@@ -120,13 +119,13 @@ function mostrarProductos(lista) {
   }
 }
  
-// ---------- Filtros ----------
- 
+/* Filtros */
+
 function aplicarFiltros() {
-  // copia del array para no modificar el original
+  
   let lista = productosGuardados.slice();
  
-  // 1) categoria
+  
   const categoria = obtenerCategoriaSeleccionada();
   if (categoria !== "todas") {
     lista = lista.filter(function (p) {
@@ -134,7 +133,7 @@ function aplicarFiltros() {
     });
   }
  
-  // 2) buscador (nombre o descripcion)
+  
   const texto = buscador.value.toLowerCase();
   if (texto !== "") {
     lista = lista.filter(function (p) {
@@ -144,7 +143,7 @@ function aplicarFiltros() {
     });
   }
  
-  // 3) orden por precio
+  
   const orden = selectOrden.value;
   if (orden === "menor") {
     lista.sort(function (a, b) {
@@ -159,10 +158,10 @@ function aplicarFiltros() {
   mostrarProductos(lista);
 }
  
-// ---------- Carrito ----------
+/* Carrito */
  
 function agregarAlCarrito(id) {
-  // busco el producto en el array
+  
   let producto = null;
   for (let i = 0; i < productosGuardados.length; i++) {
     if (productosGuardados[i].id === id) {
@@ -170,7 +169,7 @@ function agregarAlCarrito(id) {
     }
   }
  
-  // veo si ya estaba en el carrito
+  
   let itemCarrito = null;
   for (let i = 0; i < carrito.length; i++) {
     if (carrito[i].id === id) {
@@ -255,13 +254,13 @@ function actualizarCarrito() {
   totalCarrito.textContent = formatearPrecio(total);
   contadorCarrito.textContent = "Carrito (" + cantidadTotal + ")";
  
-  // guardo el carrito en localStorage
+  
   localStorage.setItem("carrito", JSON.stringify(carrito));
 }
  
-// ---------- Eventos ----------
+
  
-// al hacer click en el título se renderizan los productos
+
 titulo.addEventListener("click", function () {
   aplicarFiltros();
 });
@@ -275,5 +274,5 @@ for (let i = 0; i < radiosCategoria.length; i++) {
  
 botonVaciar.addEventListener("click", vaciarCarrito);
  
-// muestro el carrito al cargar la página (por si había algo guardado)
+
 actualizarCarrito();
